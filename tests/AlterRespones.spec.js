@@ -5,6 +5,7 @@ test("Altering Resposne", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
   await page.goto("https://www.rahulshettyacademy.com/client");
+  page.on('response',res=>{console.log(res.url(),res.status())});
   await page.waitForLoadState("networkidle");
   await page.locator("#userEmail").fill("ruhitest@yopmail.com");
   await page.locator("#userPassword").fill("Indigo@123");
@@ -34,4 +35,5 @@ test("Altering Resposne", async ({ browser }) => {
   expect(text).toContain(
     " You have No Orders to show at this time. Please Visit Back Us "
   );
+
 });
